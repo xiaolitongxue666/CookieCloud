@@ -1,0 +1,19 @@
+# 本机 loopback（不要求 Tailscale）。生产仍用 Docker-compose.yml。
+# 用法：docker compose -f Docker-compose.local.yml up -d
+# 探针：curl --noproxy '*' -sS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:8088/cookiecloud/
+services:
+  cookiecloud:
+    image: easychen/cookiecloud:2023.01.20.16.39
+    container_name: cookiecloud-app-local
+    restart: unless-stopped
+    environment:
+      API_ROOT: /cookiecloud
+    volumes:
+      - ./data:/data/api/data
+    ports:
+      - "127.0.0.1:8088:8088"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -8,6 +8,10 @@
 - 访问：Tailscale 经 vps_nginx **`/cookiecloud/`**（永不加入 `VPS_NGINX_PUBLIC_EXPOSE`）
 - 密钥：`cookiecloud.local.env`（gitignore）
 
+Hub 镜像无 semver；compose 钉 `easychen/cookiecloud:2023.01.20.16.39`（与 Hub `:latest` 同 digest，避免漂移）。勿把 `api/` `ext/` `web/` 上游树当运行时源。
+
+本机无 Tailscale 时：`docker compose -f Docker-compose.local.yml up -d`（只绑 `127.0.0.1:8088`）。
+
 ## 部署
 
 ```bash

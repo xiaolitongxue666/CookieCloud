@@ -2,7 +2,7 @@
 # 用法：TAILSCALE_IP=$(tailscale ip -4) docker compose -f Docker-compose.yml up -d
 services:
   cookiecloud:
-    image: easychen/cookiecloud:latest
+    image: easychen/cookiecloud:2023.01.20.16.39
     container_name: cookiecloud-app
     restart: unless-stopped
     environment:

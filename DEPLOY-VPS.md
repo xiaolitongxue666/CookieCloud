@@ -2,6 +2,10 @@
 
 独立于 RSS 栈；勿并入 `stack-down` 生命周期。
 
+VPS 以本仓 `Docker-compose.yml` 为准（环回 + Tailscale `:8088`）。上游 README 的 `-p 8088:8088` 全接口绑定不要用于本机。
+
+浏览可用 Nginx Tailscale `/cookiecloud/`；**上传走 `:8088`**（避开 `:80` gzip POST 408）。
+
 ## 约束
 
 - 监听：`127.0.0.1:8088`（禁止公网裸露）
@@ -23,7 +27,7 @@ ssh ubuntu@xiaolitongxue.com.cn
 cd /home/ubuntu/Code/VPS/CookieCloud
 cp -n cookiecloud.local.env.example cookiecloud.local.env
 # 填入 COOKIE_CLOUD_UUID / COOKIE_CLOUD_PASSWORD
-docker compose -f Docker-compose.yml up -d
+TAILSCALE_IP=$(tailscale ip -4) docker compose -f Docker-compose.yml up -d
 curl --noproxy '*' -sS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:8088/cookiecloud/
 ```
 

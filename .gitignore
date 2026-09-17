@@ -8,3 +8,6 @@ ref/
 **/.DS_Store
 Thumbs.db
 *.log
+
+.codegraph/
+undefined/

@@ -1,0 +1,10 @@
+---
+description: CookieCloud 仅 Tailscale，永不公网
+alwaysApply: true
+---
+
+生产路径 `/home/ubuntu/Code/VPS/CookieCloud`。部署：`TAILSCALE_IP=$(tailscale ip -4) docker compose -f Docker-compose.yml up -d`。
+
+禁止加入 `VPS_NGINX_PUBLIC_EXPOSE`。勿覆盖 `cookiecloud.local.env` 与 `data/`。扩展直连 Tailscale `:8088`。
+
+细节：[AGENTS.md](../../AGENTS.md)、[DEPLOY-VPS.md](../../DEPLOY-VPS.md)

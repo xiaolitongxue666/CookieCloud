@@ -13,6 +13,12 @@ services:
       - "127.0.0.1:8088:8088"
       # 扩展直连用（避开 Nginx 对 Chrome gzip POST 的 408）；公网 UFW 默认不放行 8088
       - "${TAILSCALE_IP:?set TAILSCALE_IP}:8088:8088"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8088/cookiecloud/ >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     logging:
       driver: json-file
       options:

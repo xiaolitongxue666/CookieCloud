@@ -1,5 +1,10 @@
 data/
 cookiecloud.local.env
+*.env
+*.local.env
+!*.example
+!*.env.example
+!cookiecloud.local.env.example
 .vscode/
 node_modules/
 logs/
